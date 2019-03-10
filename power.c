@@ -1,4 +1,4 @@
-#include "power.h"
+#include "includes.h"
 
 void parse_line(char* line, char* key, char* value) {
 
@@ -119,12 +119,5 @@ void power_print() {
 	get_info(&info, path);
 	
 	print_info(&info);
-}
-
-int main(void) {
-
-	power_print();
-
-	return 0;
 }
 
