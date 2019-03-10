@@ -1,11 +1,4 @@
-#include <stdio.h>
-#include <string.h>
-
-#include "defs.h"
-
-void find_info(char* path) {
-
-}
+#include "power.h"
 
 void parse_line(char* line, char* key, char* value) {
 
@@ -26,6 +19,36 @@ void parse_line(char* line, char* key, char* value) {
 	}
 
 	value[j] = '\0';
+}
+
+// Use config file 
+// to get path to
+// POWER SUPPLY information
+//
+void find_info(char* path) {
+
+	char config[MAX_LEN] = {0};
+	char buf[MAX_LEN] = {0};
+	char key[MAX_LEN] = {0};
+	char value[MAX_LEN] = {0};
+
+	char* home =  getenv("HOME");
+	
+	snprintf(config, sizeof config, "%s/%s", home, CONFIG_FILE);
+
+	FILE* fp = fopen(config, "r");
+
+	if (fp == NULL) {
+		perror("configuration file ");
+		_exit(EXIT_FAILURE);
+	}
+
+	fgets(buf, sizeof buf, fp);
+
+	parse_line(buf, key, value);
+
+	if (strcmp(key, "PATH") == 0)
+		strcpy(path, value);
 }
 
 int get_code(char* key) {
@@ -93,7 +116,7 @@ void power_print() {
 
 	find_info(path);
 
-	get_info(&info, PATH);
+	get_info(&info, path);
 	
 	print_info(&info);
 }

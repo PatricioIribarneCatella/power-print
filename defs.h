@@ -3,7 +3,8 @@
 
 #define MAX_LEN 256
 #define LINE_LEN 512
-#define PATH "/sys/class/power_supply/axp288_fuel_gauge/uevent"
+
+#define CONFIG_FILE ".power_print.conf"
 
 #define POWER_STATUS "POWER_SUPPLY_STATUS"
 #define POWER_HEALTH "POWER_SUPPLY_HEALTH"
