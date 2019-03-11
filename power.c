@@ -1,5 +1,8 @@
 #include "includes.h"
 
+//
+// Parse a 'line' and split it by the '=' char
+//
 void parse_line(char* line, char* key, char* value) {
 
 	int i = 0, j = 0;
@@ -64,6 +67,10 @@ int get_code(char* key) {
 	return -1;
 }
 
+//
+// Stores 'value' in the struct 'info'
+// by 'key'
+//
 void store_info(struct power_info* info, char* key, char* value) {
 
 	int code = get_code(key);
@@ -84,6 +91,11 @@ void store_info(struct power_info* info, char* key, char* value) {
 	}
 }
 
+//
+// Reads the file in 'path' for information
+// about the battery, and stores it in the 
+// 'info' struct
+//
 void get_info(struct power_info* info, char* path) {
 
 	char buf[LINE_LEN] = {0};
