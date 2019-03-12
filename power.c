@@ -30,7 +30,6 @@ void find_info(char* path) {
 		strcpy(path, value);
 }
 
-
 //
 // Reads the file in 'path' for information
 // about the battery, and stores it in the 
@@ -52,6 +51,9 @@ void get_info(struct power_info* info, char* path) {
 	}
 }
 
+//
+// Prints final information
+//
 void print_info(struct power_info* info) {
 
 	printf("Power Information: STATUS:[%s] CAPACITY:[%s] HEALTH:[%s] TECH:[%s]\n",
