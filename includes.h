@@ -7,6 +7,8 @@
 #include <unistd.h>
 
 #include "defs.h"
+#include "parsing.h"
+#include "utils.h"
 
 #endif // INCLUDES_H
 
