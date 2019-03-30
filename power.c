@@ -66,7 +66,8 @@ void print_info(struct power_info* info) {
 void power_print() {
 
 	char path[MAX_LEN] = {0};
-	struct power_info info;
+	struct power_info info = {0};
+
 
 	find_info(path);
 
