@@ -4,18 +4,32 @@
 // to get path to
 // POWER SUPPLY information
 //
-void find_info(char* path) {
+void find_info(char* bat_path) {
 
-	char config[MAX_LEN] = {0};
 	char buf[MAX_LEN] = {0};
 	char key[MAX_LEN] = {0};
 	char value[MAX_LEN] = {0};
+	char config_path[MAX_LEN] = {0};
+	char config_file_path[MAX_LEN * 2] = {0};
 
-	char* home = getenv("HOME");
-	
-	snprintf(config, sizeof config, "%s/%s", home, CONFIG_FILE);
+	char* env_config;
+	char* home;
 
-	FILE* fp = fopen(config, "r");
+	// First, looks if the
+	// environment variable: POWPRINTPATH
+	// is set
+	env_config = getenv("POWPRINTPATH");
+
+	if (env_config)
+		strcpy(config_path, env_config);
+	else {
+		home = getenv("HOME");
+		snprintf(config_path, sizeof config_path, "%s/%s", home, CONFIG_DEF_PATH);
+	}
+
+	snprintf(config_file_path, sizeof config_file_path, "%s/%s", config_path, CONFIG_FILE);
+
+	FILE* fp = fopen(config_file_path, "r");
 
 	if (fp == NULL) {
 		perror("configuration file ");
@@ -27,7 +41,7 @@ void find_info(char* path) {
 	parse_line(buf, key, value);
 
 	if (strcmp(key, "PATH") == 0)
-		strcpy(path, value);
+		strcpy(bat_path, value);
 }
 
 //

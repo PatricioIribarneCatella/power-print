@@ -4,7 +4,8 @@
 #define MAX_LEN 256
 #define LINE_LEN 512
 
-#define CONFIG_FILE ".power_print.conf"
+#define CONFIG_FILE "config"
+#define CONFIG_DEF_PATH ".config/power-print"
 
 #define POWER_STATUS "POWER_SUPPLY_STATUS"
 #define POWER_HEALTH "POWER_SUPPLY_HEALTH"
